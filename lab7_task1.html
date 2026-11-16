@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #26334a;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+        }
+
+        input, select, button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px;
+            border: 1px solid #ccd2dc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #26334a;
+            color: white;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #26334a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Интернет-магазин</h2>
+
+    <form name="shopForm">
+        <label>Выберите товар:</label>
+        <select name="product">
+            <option value="6">Ручка — 6 руб.</option>
+            <option value="3">Карандаш — 3 руб.</option>
+            <option value="15">Фломастер — 15 руб.</option>
+        </select>
+
+        <label>Количество:</label>
+        <input type="number" name="quantity"
+               min="1" step="1" placeholder="Введите количество">
+
+        <button type="button" onclick="calculateOrder()">
+            Оформить заказ
+        </button>
+
+        <button type="reset" onclick="clearResult()">
+            Очистить форму
+        </button>
+
+        <div class="result" id="result"></div>
+    </form>
+</div>
+
+<script>
+    function calculateOrder() {
+        let price = Number(document.shopForm.product.value);
+        let quantity = Number(document.shopForm.quantity.value);
+
+        if (quantity <= 0 ||
+            document.shopForm.quantity.value === "" ||
+            !Number.isInteger(quantity)) {
+            alert("Введите целое положительное количество товара!");
+            return;
+        }
+
+        let total = price * quantity;
+
+        document.getElementById("result").textContent =
+            "Стоимость заказа: " + total + " руб.";
+    }
+
+    function clearResult() {
+        document.getElementById("result").textContent = "";
+    }
+</script>
+
+</body>
+</html>

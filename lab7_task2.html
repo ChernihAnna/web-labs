@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение цвета фона</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #26334a;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Изменение цвета фона</h1>
+<p id="status">Нажмите кнопку для запуска программы</p>
+
+<button onclick="changeBackground()">Запустить</button>
+
+<script>
+    function changeBackground() {
+        let colors = [
+            "#E8F0FE",
+            "#D1FAE5",
+            "#FEF3C7",
+            "#FCE7F3",
+            "#EDE9FE",
+            "#F2F4F8"
+        ];
+
+        let counter = 0;
+
+        function nextColor() {
+            if (counter < colors.length) {
+                document.bgColor = colors[counter];
+
+                document.getElementById("status").textContent =
+                    "Изменение цвета: " + (counter + 1);
+
+                counter++;
+
+                setTimeout(nextColor, 1000);
+            } else {
+                document.getElementById("status").textContent =
+                    "Изменение цвета завершено!";
+            }
+        }
+
+        nextColor();
+    }
+</script>
+
+</body>
+</html>
